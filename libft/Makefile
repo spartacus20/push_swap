@@ -6,7 +6,7 @@
 #    By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 16:15:34 by jotomas-          #+#    #+#              #
-#    Updated: 2024/01/05 11:53:33 by jotomas-         ###   ########.fr        #
+#    Updated: 2024/01/05 14:24:50 by jotomas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ bonus: $(OBJS) $(BONUS_OBJS)
 	$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $@
 
 $(BONUS_OBJS): %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $@
 
 clean:
 	rm -rf $(OBJS) $(BONUS_OBJS)
