@@ -6,41 +6,44 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:14:44 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/05 18:31:37 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:49:59 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-Stack	*ft_create_stack(void)
+t_Stack	*ft_create_stack(int n_items)
 {
-	Stack	*stack;
+	t_Stack	*stack;
 
-	stack = (Stack *)malloc(sizeof(Stack));
+	stack = (t_Stack *)malloc(sizeof(t_Stack));
 	if (!stack)
 		return (NULL);
 	stack->top = -1;
 	stack->size = 0;
+	stack->items = malloc(sizeof(int) * n_items + 1);
+	if (!stack->items)
+		return (NULL);
 	return (stack);
 }
 
-void	deleteStack(Stack *stack)
+void	deleteStack(t_Stack *stack)
 {
 	while (stack->top != -1)
 		pop(stack);
 	free(stack);
 }
 
-int	isFull(Stack *stack)
+int	isFull(t_Stack *stack)
 {
-	if (stack->top == MAX_SIZE - 1)
+	if (stack->top == 6 - 1)
 		return (1);
 	else
 		return (0);
 }
 
-int	isEmpty(Stack *stack)
+int	isEmpty(t_Stack *stack)
 {
 	if (stack->top == -1)
 		return (1);
@@ -48,7 +51,7 @@ int	isEmpty(Stack *stack)
 		return (0);
 }
 
-void	push(Stack *stack, int item)
+void	push(t_Stack *stack, int item)
 {
 	if (isFull(stack))
 		ft_printf("Overflow Error");
@@ -58,29 +61,34 @@ void	push(Stack *stack, int item)
 		stack->size++;
 	}
 }
-
-int	pop(Stack *stack)
+//Delete item from the end of the list
+// Example if i have: 1, 2, 3, 4
+// the 4 will be removed by the top.
+int	pop(t_Stack *stack)
 {
 	int	items;
 
 	if (isEmpty(stack))
 	{
-		ft_printf("Stack is empty");
+		ft_printf("t_Stack is empty");
 		return (-1);
 	}
 	stack->size--;
-	items = stack->items[--stack->top];
+	items = stack->items[stack->top];
+	stack->top--;
 	return (items);
 }
 
-int	get_lenght(Stack *stack)
+
+
+int	get_lenght(t_Stack *stack)
 {
 	return (stack->size);
 }
 
-int	peek(Stack *stack)
+int	peek(t_Stack *stack)
 {
 	if (!isEmpty(stack))
-		return (stack->top);
-	return -1;
+		return (stack->items[stack->top]);
+	return (-1);
 }
