@@ -5,90 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 12:14:44 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/19 12:49:59 by jotomas-         ###   ########.fr       */
+/*   Created: 2024/01/30 10:58:54 by jotomas-          #+#    #+#             */
+/*   Updated: 2024/01/30 15:56:37 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-t_Stack	*ft_create_stack(int n_items)
+void	free_arr(char **args)
 {
-	t_Stack	*stack;
+	int	i;
 
-	stack = (t_Stack *)malloc(sizeof(t_Stack));
+	if (!args || !*args)
+		return ;
+	i = -1;
+	while (args[i])
+		free(args[i++]);
+	free(args - 1);
+}
+
+void	free_stack(t_stack_node **stack)
+{
+	t_stack_node	*tmp;
+	t_stack_node	*current;
+
+	if (stack == NULL)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	*stack = NULL;
+}
+
+t_stack_node	*get_last_node(t_stack_node *head)
+{
+	if (!head)
+		return (NULL);
+	while (head->next)
+		head = head->next;
+	return (head);
+}
+
+void	stack_append(t_stack_node **stack, int nbr)
+{
+	t_stack_node	*node;
+	t_stack_node	*last;
+
 	if (!stack)
-		return (NULL);
-	stack->top = -1;
-	stack->size = 0;
-	stack->items = malloc(sizeof(int) * n_items + 1);
-	if (!stack->items)
-		return (NULL);
-	return (stack);
-}
-
-void	deleteStack(t_Stack *stack)
-{
-	while (stack->top != -1)
-		pop(stack);
-	free(stack);
-}
-
-int	isFull(t_Stack *stack)
-{
-	if (stack->top == 6 - 1)
-		return (1);
-	else
-		return (0);
-}
-
-int	isEmpty(t_Stack *stack)
-{
-	if (stack->top == -1)
-		return (1);
-	else
-		return (0);
-}
-
-void	push(t_Stack *stack, int item)
-{
-	if (isFull(stack))
-		ft_printf("Overflow Error");
+		return ;
+	node = malloc(sizeof(t_stack_node));
+	node->sort = malloc(sizeof(t_sort));
+	if (!node || !node->sort)
+		return ;
+	node->next = NULL;
+	node->value = nbr;
+	if (!*stack)
+	{
+		*stack = node;
+		node->prev = NULL;
+	}
 	else
 	{
-		stack->items[++stack->top] = item;
-		stack->size++;
+		last = get_last_node(*stack);
+		last->next = node;
+		node->prev = last;
 	}
 }
-//Delete item from the end of the list
-// Example if i have: 1, 2, 3, 4
-// the 4 will be removed by the top.
-int	pop(t_Stack *stack)
-{
-	int	items;
 
-	if (isEmpty(stack))
+void	stack_init(t_stack_node **stack, char **args, int only_2)
+{
+	int	i;
+	int	num;
+
+	i = 0;
+	while (args[i])
 	{
-		ft_printf("t_Stack is empty");
-		return (-1);
+		if (error_systax(args[i]))
+			error_free(stack, args, only_2);
+		num = ft_atoi(args[i]);
+		if (error_num_repeated(*stack, num))
+			error_free(stack, args, only_2);
+		stack_append(stack, num);
+		i++;
 	}
-	stack->size--;
-	items = stack->items[stack->top];
-	stack->top--;
-	return (items);
-}
-
-
-
-int	get_lenght(t_Stack *stack)
-{
-	return (stack->size);
-}
-
-int	peek(t_Stack *stack)
-{
-	if (!isEmpty(stack))
-		return (stack->items[stack->top]);
-	return (-1);
+	if (only_2)
+		free_arr(args);
 }
