@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:55:49 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/31 12:59:40 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:53:24 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int	main(int argv, char **args)
 			sort_big_nb(&stack_a, &stack_b);
 	}
 	free_stack(&stack_a);
+	free_stack(&stack_b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:58:54 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/31 12:52:50 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:59:17 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	free_arr(char **args)
 	free(args - 1);
 }
 
+void free_sort(t_sort *sort) {
+    if (sort != NULL) {
+        free(sort);
+    }
+}
+
 void	free_stack(t_stack_node **stack)
 {
 	t_stack_node	*tmp;
@@ -36,10 +42,13 @@ void	free_stack(t_stack_node **stack)
 	while (current)
 	{
 		tmp = current->next;
+		free_sort(current->sort);
 		free(current);
 		current = tmp;
 	}
+
 	*stack = NULL;
+
 }
 
 t_stack_node	*get_last_node(t_stack_node *head)

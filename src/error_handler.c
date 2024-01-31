@@ -6,19 +6,23 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:11:25 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/30 12:29:23 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:00:13 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
+
+
+
+
 void	error_free(t_stack_node **stack, char **args, int only_2)
 {
 	free_stack(stack);
 	if (only_2)
 		free_arr(args);
-	ft_printf("Errro\n");
+	ft_printf("Error\n");
 	exit(1);
 }
 
