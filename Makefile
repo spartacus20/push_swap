@@ -31,6 +31,7 @@ clean:
 	make clean -C $(LIBFT)
 
 fclean: clean
+	rm -rf $(NAME)
 	rm -f libft.a
 	rm -rf $(OBJS_DIR)
 	make fclean -C $(LIBFT)

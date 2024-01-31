@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:55:20 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/30 15:07:11 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:28:59 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int						stack_size(t_stack_node *stack);
 t_stack_node			*get_last_node(t_stack_node *head);
 t_stack_node			*get_max_node(t_stack_node *stack);
 t_stack_node			*get_min_node(t_stack_node *stack);
+void					set_target_node(t_stack_node *stack_a,
+							t_stack_node *stack_b);
 
 // Error handling
 int						error_num_repeated(t_stack_node *stack, int nbr);
@@ -83,6 +85,7 @@ void					reverse_rotate_both(t_stack_node **stack_a,
 void					rotate_until_top_node(t_stack_node **stack,
 							t_stack_node *top_node, char stack_name);
 t_stack_node			*get_cheapest(t_stack_node *stack);
+
 // Alogorithm
 
 void					sort_three_nb(t_stack_node **stack);

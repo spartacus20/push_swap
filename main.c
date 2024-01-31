@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:55:49 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/30 16:04:48 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:59:40 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ int	main(int argv, char **args)
 	else if (argv == 2)
 	{
 		args = ft_split(args[1], SPACE);
-		stack_init(&stack_a, args + 1, check_args(argv));
-		if (!stack_is_sorted(stack_a))
-		{
-			if (stack_size(stack_a) == 2)
-				sa(&stack_a);
-			else if (stack_size(stack_a) == 3)
-				sort_three_nb(&stack_a);
-			else
-				sort_big_nb(&stack_a, &stack_b);
-		}
-		free_stack(&stack_a);
-		return (0);
 	}
+	stack_init(&stack_a, args + 1, check_args(argv));
+	if (!stack_is_sorted(stack_a))
+	{
+		if (stack_size(stack_a) == 2)
+			sa(&stack_a);
+		else if (stack_size(stack_a) == 3)
+			sort_three_nb(&stack_a);
+		else
+			sort_big_nb(&stack_a, &stack_b);
+	}
+	free_stack(&stack_a);
+	return (0);
 }
