@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:58:54 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/31 16:59:17 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:07:59 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ void	free_arr(char **args)
 	free(args - 1);
 }
 
-void free_sort(t_sort *sort) {
-    if (sort != NULL) {
-        free(sort);
-    }
+void	free_sort(t_sort *sort)
+{
+	if (sort != NULL)
+	{
+		free(sort);
+	}
 }
 
 void	free_stack(t_stack_node **stack)
@@ -46,9 +48,7 @@ void	free_stack(t_stack_node **stack)
 		free(current);
 		current = tmp;
 	}
-
 	*stack = NULL;
-
 }
 
 t_stack_node	*get_last_node(t_stack_node *head)
@@ -68,7 +68,7 @@ void	stack_append(t_stack_node **stack, int nbr)
 	if (!stack)
 		return ;
 	node = malloc(sizeof(t_stack_node));
-	node->sort = malloc(sizeof(t_sort));
+	node->sort = ft_calloc(1, sizeof(t_sort));
 	if (!node || !node->sort)
 		return ;
 	node->next = NULL;

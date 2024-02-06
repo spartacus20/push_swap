@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:38:44 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/15 17:06:09 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:53:52 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	whitespaces(const char *str, int *ptr_i)
 		i++;
 	}
 	*ptr_i = i;
+
+
 	return (count);
 }
 
@@ -46,5 +48,8 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	result *= sign;
+
+	if(result > INT_MAX)
+		ft_printf("Error\n");
 	return (result);
 }
