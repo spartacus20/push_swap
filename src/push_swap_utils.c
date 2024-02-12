@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:58:54 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/02/06 12:37:24 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:41:26 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,21 @@ void	stack_append(t_stack_node **stack, int nbr)
 
 void	stack_init(t_stack_node **stack, char **args, int only_2)
 {
-	int	i;
-	int	num;
+	int		i;
+	long	num;
 
 	i = 0;
 	while (args[i])
 	{
 		if (error_systax(args[i]))
 			error_free(stack, args, only_2);
-		num = ft_atoi(args[i]);
-		if (error_num_repeated(*stack, num))
+		num = ft_atol(args[i]);
+		if (num > INT_MAX || num < INT_MIN)
 			error_free(stack, args, only_2);
-		stack_append(stack, num);
-		i++;
+		if (error_num_repeated(*stack, (int)num))
+			error_free(stack, args, only_2);
+		stack_append(stack, (int)num);
+		++i;
 	}
 	if (only_2)
 		free_arr(args);

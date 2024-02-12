@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:11:25 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/02/06 12:38:03 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:14:11 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ void	error_free(t_stack_node **stack, char **args, int only_2)
 
 int	error_systax(char *str)
 {
-	if (!(*str == '+' || *str == '-' || (*str >= '0' && *str <= '9')))
+	if (!(*str == '+' || *str == '-' || (*str >= '0'
+				&& *str <= '9')))
 		return (1);
-	if ((*str == '+' || *str == '-') && !(str[1] >= '0' && str[1] <= '9'))
+	if ((*str == '+' || *str == '-') && !(str[1] >= '0'
+			&& str[1] <= '9'))
 		return (1);
 	while (*++str)
+	{
 		if (!(*str >= '0' && *str <= '9'))
 			return (1);
+	}
 	return (0);
 }
 

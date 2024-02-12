@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:49:29 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/30 16:06:17 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:58:24 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 void	set_current_position(t_stack_node *stack)
 {
 	int	i;
-	int	half;
+	int	centerline;
 
+	i = 0;
 	if (!stack)
 		return ;
-	i = 0;
-	half = stack_size(stack) / 2;
+	centerline = stack_size(stack) / 2;
 	while (stack)
 	{
 		stack->sort->current_position = i;
-		if (i <= half)
+		if (i <= centerline)
 			stack->sort->above_median = 1;
 		else
 			stack->sort->above_median = 0;
 		stack = stack->next;
-		i++;
+		++i;
 	}
 }
 
@@ -48,22 +48,23 @@ void	set_price(t_stack_node *stack_a, t_stack_node *stack_b)
 			stack_b->sort->push_price = len_b
 				- (stack_b->sort->current_position);
 		if (stack_b->target_node->sort->above_median)
-			stack_b->sort->push_price += stack_b->sort->current_position;
+			stack_b->sort->push_price
+				+= stack_b->target_node->sort->current_position;
 		else
 			stack_b->sort->push_price += len_a
-				- (stack_b->sort->current_position);
+				- (stack_b->target_node->sort->current_position);
 		stack_b = stack_b->next;
 	}
 }
 
 void	set_cheapest(t_stack_node *stack)
 {
-	int				best_match_value;
+	long			best_match_value;
 	t_stack_node	*best_match;
 
 	if (!stack)
 		return ;
-	best_match_value = INT_MAX;
+	best_match_value = LONG_MAX;
 	while (stack)
 	{
 		if (stack->sort->push_price < best_match_value)
@@ -78,28 +79,28 @@ void	set_cheapest(t_stack_node *stack)
 
 void	set_target_node(t_stack_node *stack_a, t_stack_node *stack_b)
 {
-	t_stack_node	*current;
-	t_stack_node	*target;
-	int				best_match_index;
+	t_stack_node	*current_a;
+	t_stack_node	*target_node;
+	long			best_match_index;
 
 	while (stack_b)
 	{
-		best_match_index = INT_MAX;
-		current = stack_a;
-		while (current)
+		best_match_index = LONG_MAX;
+		current_a = stack_a;
+		while (current_a)
 		{
-			if (current->value > stack_b->value
-				&& current->value < best_match_index)
+			if (current_a->value > stack_b->value
+				&& current_a->value < best_match_index)
 			{
-				best_match_index = current->value;
-				target = current;
+				best_match_index = current_a->value;
+				target_node = current_a;
 			}
-			current = current->next;
+			current_a = current_a->next;
 		}
-		if (best_match_index == INT_MAX)
+		if (LONG_MAX == best_match_index)
 			stack_b->target_node = get_min_node(stack_a);
 		else
-			stack_b->target_node = target;
+			stack_b->target_node = target_node;
 		stack_b = stack_b->next;
 	}
 }

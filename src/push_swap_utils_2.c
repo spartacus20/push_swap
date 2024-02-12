@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:58:20 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/02/06 12:38:00 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:46:35 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	stack_size(t_stack_node *stack)
 	size = 0;
 	while (stack)
 	{
-		size++;
 		stack = stack->next;
+		size++;
 	}
 	return (size);
 }
@@ -77,12 +77,12 @@ t_stack_node	*get_max_node(t_stack_node *stack)
 
 t_stack_node	*get_min_node(t_stack_node *stack)
 {
-	int				min;
+	long			min;
 	t_stack_node	*min_node;
 
 	if (!stack)
 		return (NULL);
-	min = INT_MAX;
+	min = LONG_MAX;
 	while (stack)
 	{
 		if (stack->value < min)

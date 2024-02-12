@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:55:20 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/31 12:28:59 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:45:13 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ t_stack_node			*get_cheapest(t_stack_node *stack);
 
 // Alogorithm
 
+void					sort_two_nb(t_stack_node **stack_a);
+void					sort_four_nb(t_stack_node **stack_a,
+							t_stack_node **stack_b);
 void					sort_three_nb(t_stack_node **stack);
 void					sort_five_nb(t_stack_node **stack_a,
 							t_stack_node **stack_b);

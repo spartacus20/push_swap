@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra
 NAME = push_swap
 INCLUDES = include
 FORMATS = formats/

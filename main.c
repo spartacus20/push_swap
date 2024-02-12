@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:55:49 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/01/31 16:53:24 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:04:38 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ int	main(int argv, char **args)
 	if (argv == 1 || (argv == 2 && !args[1][0]))
 		return (1);
 	else if (argv == 2)
-	{
 		args = ft_split(args[1], SPACE);
-	}
 	stack_init(&stack_a, args + 1, check_args(argv));
 	if (!stack_is_sorted(stack_a))
 	{

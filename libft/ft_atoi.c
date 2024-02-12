@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:38:44 by jotomas-          #+#    #+#             */
-/*   Updated: 2024/02/06 12:36:25 by jotomas-         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:00:14 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static int	whitespaces(const char *str, int *ptr_i)
 
 int	ft_atoi(const char *str)
 {
-	int	sign;
-	int	result;
-	int	i;
+	int		sign;
+	long	result;
+	int		i;
 
 	result = 0;
 	sign = whitespaces(str, &i);
@@ -47,6 +47,9 @@ int	ft_atoi(const char *str)
 	}
 	result *= sign;
 	if (result > INT_MAX)
+	{
 		ft_printf("Error\n");
+		exit(1);
+	}
 	return (result);
 }
